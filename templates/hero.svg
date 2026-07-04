@@ -1,0 +1,47 @@
+<svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="西湖群山日落线条画">
+  <defs>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="var(--accent)" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="aboveLake"><rect x="0" y="0" width="520" height="150"/></clipPath>
+  </defs>
+
+  <!-- 落日：缓慢下沉，被湖面裁切 -->
+  <g clip-path="url(#aboveLake)">
+    <g class="sun">
+      <circle cx="330" cy="96" r="34" fill="url(#sunGlow)"/>
+      <circle cx="330" cy="96" r="17" fill="var(--accent)"/>
+    </g>
+  </g>
+
+  <!-- 远山（描边动画，三层错落） -->
+  <path class="draw" d="M0 122 Q 60 74 118 108 T 232 100 Q 290 66 350 104 T 520 96"
+        fill="none" stroke="var(--fg-soft)" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+  <path class="draw d2" d="M0 138 Q 80 96 150 126 T 300 122 Q 370 92 440 124 T 520 118"
+        fill="none" stroke="var(--fg)" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+  <!-- 保俶塔剪影 -->
+  <path class="draw d2" d="M96 108 l5 -26 l2 -7 l2 7 l5 26 M99 92 h12 M101 84 h8"
+        fill="none" stroke="var(--fg)" stroke-width="1.6" stroke-linejoin="round" opacity="0.75"/>
+  <!-- 湖岸近景 -->
+  <path class="draw d3" d="M0 150 H520" fill="none" stroke="var(--accent-deep)" stroke-width="2" opacity="0.8"/>
+
+  <!-- 湖面倒影波纹 -->
+  <g stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" fill="none">
+    <path class="ripple"    d="M300 162 h60"/>
+    <path class="ripple r2" d="M312 172 h38"/>
+    <path class="ripple"    d="M290 182 h44" opacity="0.5"/>
+  </g>
+  <g stroke="var(--fg-soft)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.5">
+    <path class="ripple r2" d="M80 166 h50"/>
+    <path class="ripple"    d="M150 178 h34"/>
+    <path class="ripple r2" d="M430 168 h40"/>
+  </g>
+
+  <!-- 飞鸟 -->
+  <g fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linecap="round">
+    <path class="bird"    d="M0 60 q4 -5 8 0 q4 -5 8 0"/>
+    <path class="bird b2" d="M0 46 q3 -4 6 0 q3 -4 6 0"/>
+  </g>
+</svg>

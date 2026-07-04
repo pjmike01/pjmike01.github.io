@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{title}}</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23e8853d'/></svg>">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="/">
+      <svg class="logo-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <g class="logo-blades" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <line x1="12" y1="4"  x2="16.5" y2="10.5"/>
+          <line x1="19" y1="8"  x2="12.5" y2="12.5"/>
+          <line x1="19" y1="16" x2="11"   y2="14.5"/>
+          <line x1="12" y1="20" x2="9"    y2="12.8"/>
+          <line x1="5"  y1="16" x2="11.2" y2="11"/>
+          <line x1="5"  y1="8"  x2="13"   y2="9.5"/>
+        </g>
+      </svg>
+      pjmike
+    </a>
+    <div class="nav-links">
+      <a data-nav="home" href="/">博客</a>
+      <a data-nav="gallery" href="/gallery/">图库</a>
+      <a data-nav="about" href="/about/">关于</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+{{content}}
+</main>
+
+<footer class="site-footer">
+  <svg class="waves" viewBox="0 24 150 28" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <path id="wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"/>
+    </defs>
+    <g class="wave-parallax">
+      <use href="#wave" x="48" y="0" class="wave1"/>
+      <use href="#wave" x="48" y="3" class="wave2"/>
+      <use href="#wave" x="48" y="5" class="wave3"/>
+    </g>
+  </svg>
+  <p>© 2018–2026 pjmike · 由 73 篇旧文与一座城的日落组成</p>
+</footer>
+<script src="/site.js"></script>
+</body>
+</html>
