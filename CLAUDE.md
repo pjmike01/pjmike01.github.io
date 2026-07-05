@@ -1,7 +1,7 @@
 # pjmike 个人站点
 
 pjmike 的个人网站：博客（迁移自已下线的 pjmike.github.io Hexo 博客）+ 摄影图库。
-纯静态站点，无框架，Node 脚本构建，目标部署平台为 Cloudflare Pages。
+纯静态站点，无框架，Node 脚本构建，部署在 GitHub Pages（https://pjmike01.github.io/）。
 
 ## 目录约定
 
@@ -45,8 +45,9 @@ npx serve dist           # 本地预览
 - 不删除 `content/posts/` 下的文章文件（这是旧博客唯一备份）
 - 不删除 `images/` 下的照片原图
 
-## Cloudflare Pages 配置（部署时用）
+## 部署（GitHub Pages）
 
-- Build command: `node scripts/build.mjs`
-- Build output directory: `dist`
+- 仓库：pjmike01/pjmike01.github.io，Pages 源为 GitHub Actions
+- 工作流：`.github/workflows/deploy.yml`，push main 自动触发（也可手动 Run workflow），CI 内跑 `npm ci` + `node scripts/build.mjs` 后发布 `dist/`
 - 无环境变量、无框架预设
+- 注意：Pages 源必须保持「GitHub Actions」，若切回 Deploy from a branch 会退回 Jekyll 渲染 README 的旧页面
