@@ -11,8 +11,9 @@ content/about.md     # 关于我
 scripts/scrape.mjs   # 一次性迁移抓取脚本（保留备查，日常不运行）
 scripts/build.mjs    # 构建脚本，唯一构建入口
 templates/           # HTML 模板（首页/文章/图库/about 共用头尾）
-images/              # 摄影作品原图（图库内容，按「地点+主题.jpg」中文命名）
-images/posts/        # 文章配图（从 Wayback 恢复）
+images/<主题>/       # 摄影作品原图，按主题分目录：日落晚霞 / 湖光山色 / 城市与桥 / 花鸟
+images/posts/        # 文章配图（从 Wayback 恢复），不进图库
+images/个人介绍/     # 个人头像等站点素材，不进图库
 dist/                # 构建输出，git 忽略，不手改
 ```
 
@@ -20,7 +21,7 @@ dist/                # 构建输出，git 忽略，不手改
 
 - 文章文件名：`YYYY-MM-DD-slug.md`，slug 沿用旧站 URL 中的标题段（可含中文），保证新旧链接可对照
 - front matter 必含 `title`、`date`；`lost_images` 记录未能恢复的图片原始 URL
-- 新照片直接放 `images/`，构建脚本自动纳入图库页
+- 新照片放进 `images/<主题>/` 对应分类子目录（文件名仍为「地点+主题.jpg」中文命名），构建脚本按分类分节渲染图库页；新增主题分类需同步改 `scripts/build.mjs` 中的 `GALLERY_CATEGORIES` 顺序表
 
 ## 构建与验证
 

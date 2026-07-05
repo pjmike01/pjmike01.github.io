@@ -110,23 +110,34 @@ for (const p of posts) {
   );
 }
 
-// ---- 图库页 ----
-const photos = (await readdir('images'))
-  .filter((f) => /\.(jpe?g|png|webp)$/i.test(f))
-  .sort((a, b) => a.localeCompare(b, 'zh'));
-const galleryHtml = photos
-  .map((f) => {
-    const caption = f.replace(/\.[^.]+$/, '').replace(/_/g, ' · ');
-    return `<figure class="photo"><img loading="lazy" src="/images/${encodeURIComponent(f)}" alt="${caption}"><figcaption>${caption}</figcaption></figure>`;
-  })
-  .join('\n');
+// ---- 图库页（按主题分节，目录即分类）----
+const GALLERY_CATEGORIES = ['日落晚霞', '湖光山色', '城市与桥', '花鸟'];
+const isPhoto = (f) => /\.(jpe?g|png|webp)$/i.test(f);
+const figure = (dir, f) => {
+  const caption = f.replace(/\.[^.]+$/, '').replace(/_/g, ' · ');
+  const src = `/images/${dir ? encodeURIComponent(dir) + '/' : ''}${encodeURIComponent(f)}`;
+  return `<figure class="photo"><img loading="lazy" src="${src}" alt="${caption}"><figcaption>${caption}</figcaption></figure>`;
+};
+let photoCount = 0;
+let galleryHtml = '';
+const uncategorized = (await readdir('images')).filter(isPhoto);
+if (uncategorized.length) throw new Error(`images/ 根目录存在未分类照片，请移入分类子目录：${uncategorized.join('、')}`);
+for (const cat of GALLERY_CATEGORIES) {
+  const files = (await readdir(path.join('images', cat)))
+    .filter(isPhoto)
+    .sort((a, b) => a.localeCompare(b, 'zh'));
+  photoCount += files.length;
+  galleryHtml += `<section class="gallery-group"><h2>${cat}</h2><div class="gallery">${files
+    .map((f) => figure(cat, f))
+    .join('\n')}</div></section>`;
+}
 const aperture = await readFile('templates/aperture.svg', 'utf8');
 await writePage(
   'gallery/index.html',
   page({
     title: '图库 · pjmike',
     nav: 'gallery',
-    content: `<div class="gallery-head">${aperture}<h1>图库</h1><p class="gallery-sub">杭州 · 日落与湖山</p></div><div class="gallery">${galleryHtml}</div><div id="lightbox" hidden><img alt=""><figcaption></figcaption></div>`,
+    content: `<div class="gallery-head">${aperture}<h1>图库</h1><p class="gallery-sub">杭州 · 日落与湖山</p></div>${galleryHtml}<div id="lightbox" hidden><img alt=""><figcaption></figcaption></div>`,
   })
 );
 
@@ -142,4 +153,4 @@ await writePage(
   })
 );
 
-console.log(`构建完成：文章 ${posts.length} 篇，照片 ${photos.length} 张 → ${DIST}/`);
+console.log(`构建完成：文章 ${posts.length} 篇，照片 ${photoCount} 张 → ${DIST}/`);
