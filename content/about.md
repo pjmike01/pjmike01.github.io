@@ -19,4 +19,5 @@ Java 后端爱好者一枚，努力做一个笔耕者。
 ## 联系
 
 - GitHub: [pjmike01](https://github.com/pjmike01)
+- 小红书: [pjmike](https://www.xiaohongshu.com/user/profile/5edf4eb10000000001006bb0)
 - Email: pjmike233@gmail.com
